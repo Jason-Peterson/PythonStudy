@@ -13,5 +13,24 @@ import requests
 # r = requests.get('http://127.0.0.1:5000/index/peterson', headers=headers)
 # print r.text
 # print r.status_code
-r = requests.get('http://127.0.0.1:5000/login', auth=('kk', '123456'))
+# r = requests.get('http://127.0.0.1:5000/login', auth=('kk', '123456'))
+# print(r.text)
+# token = 'a2s6MC42NjAzMTAyNDk0MDU6MTQzOTY2MjAzNi41NQ=='
+# r = requests.get('http://127.0.0.1:5000/test', params={'token': token})
+# print(r.text)
+r = requests.get('http://127.0.0.1:5000/client/login')
 print r.text
+print "============"
+print r.history
+print "============"
+print r.url
+print "============"
+uri_login = r.url.split('?')[0] + '?user=kk&pw=123456'
+r2 = requests.get(uri_login)
+print r2.text
+print "============"
+print r2.url
+print r2.history
+print "============"
+r3 = requests.get('http://127.0.0.1:5000/test', params={'token': r2.text})
+print r3.text
